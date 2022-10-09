@@ -27,6 +27,17 @@ Select count(id_Turma) as Total_de_Turmas from turmas;
 -- Qual foi a ultima turma a iniciar um curso 
 Select nome_Turma as Turma, max(data_inicio) as Data_de_iniciada from turmas;
 
+-- A Aluna Aricia mudou seu nome para João, com isso o nome em seu cadastro foi alterado conforme solicitado,
+-- mas para que o historico não seja perdido, foi acrescentado a informação no banco historicos
+update Alunos set nome_Aluno = 'João' where id_Aluno = 1;
 
-select * from Turmas
+-- o Aluno Caio pediu para que seu registro fosse excluido dos cadastros da escola, considerando isso, foi realizado a exclusão
+-- mantendo o historico do processo na tabela historicos;
+delete from Alunos where id_Aluno = 12;
 
+
+
+select * from Alunos;
+select * from Turmas;
+select * from historicos;
+select * from desempenho;

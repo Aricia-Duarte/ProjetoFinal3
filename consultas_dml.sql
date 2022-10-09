@@ -28,4 +28,5 @@ Select count(id_Turma) as Total_de_Turmas from turmas;
 Select nome_Turma as Turma, max(data_inicio) as Data_de_iniciada from turmas;
 
 
-select * from desempenho
+select * from Turmas
+

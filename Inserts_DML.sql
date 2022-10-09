@@ -55,11 +55,11 @@ Insert Into Colaboradores(nome_Colaborador, cpf_Colaborador, endereco_Colaborado
 ('Vic','638.161.410-21','Trav. Maria','105, BL 3', '06160-003','Osasco','SP','2021-12-10',1),
 ('Day', '555.395.150-05','Alameda Sonhar','120', '21060-100','Rio de Janeiro','RJ','2021-09-10',6),
 ('Yas','917.926.070-59','Rod. BR 050','13, Cond. Rosa Flor, Cs 20', '41010-025','Curitiba','PR','2019-04-25',2),
-('Fer', '035.656.626-73', 'Rua Marinho', '340','Bela Vista', '60841-154', 'Brasilia', 'DF', '2019-09-19',7),
+('Fer', '035.656.626-73', 'Rua Marinho', '340', '60841-154', 'Brasilia', 'DF', '2019-09-19',7),
 ('Luth', '022.522.741-88', 'Av. Brigadeiro Pampulha', '321', '65221-195','Niterói', 'RJ', '2022-03-07',3),
 ('Carol', '665.520.741-99','Rua das Begónias', '100','68844-840', 'São Paulo', 'SP', '2020-07-13',9),
 ('Jes', '014.456.366-85', 'Av dos Passaros', '520', '62005-350', 'Salvador', 'BA', '2020-09-05', '10'),
-('Clarice', '321.412.980-99','Rua da Saudade', '220' '62155-80', 'Fortaleza', 'CE', '2018-08-06', '4')
+('Clarice', '321.412.980-99','Rua da Saudade', '220', '62155-80', 'Fortaleza', 'CE', '2018-08-06', '4')
 ;
 Insert Into Alunos(nome_Aluno, cpf_Aluno, endereco_Aluno, numero_End_Aluno, cep_Aluno, cidade_Aluno, estado_Aluno,data_Cad_Aluno) values
 ('Aricia', '94932477082','Av.Maricota','75, apto 3 torre 50', '91050-100','Porto Alegre','RS','2022-01-01'),

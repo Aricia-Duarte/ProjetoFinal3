@@ -78,3 +78,31 @@ nome_velho varchar(64),
 comando varchar(64)
 );
 
+-- drop trigger Cadastro;
+DELIMITER //
+CREATE TRIGGER Criar
+after Insert ON Alunos
+FOR EACH ROW
+BEGIN
+Insert into Historicos(data_operacao,nome_novo, comando) values (now(), new.nome_Aluno, 'Insert');
+END //
+delimiter ;
+
+DELIMITER //
+CREATE TRIGGER Alteracao
+after update ON Alunos
+FOR EACH ROW
+BEGIN
+Insert into Historicos(data_operacao, nome_novo, nome_velho, comando) values (now(), new.nome_Aluno, old.nome_Aluno, 'Update');
+END //
+delimiter ;
+
+-- drop trigger Apagar;
+DELIMITER //
+CREATE TRIGGER Apagar
+after delete ON Alunos
+FOR EACH ROW
+BEGIN
+Insert into Historicos(data_operacao,nome_velho, comando) values (now(), old.nome_Aluno, 'Delete');
+END //
+delimiter ;

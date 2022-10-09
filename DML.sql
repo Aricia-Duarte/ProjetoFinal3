@@ -1,81 +1,107 @@
 create database if not exists Resilia1;
 use resilia1;
 
-create table if not exists Departamentos (
-id_Depto INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-nome_Depto VARCHAR(64) NOT NULL,
-descricao_Depto VARCHAR(64)
-); -- Por setor: Ex. RH; MKT;FACILITADORES; MENTORES; ETC..
+CREATE TABLE IF NOT EXISTS Departamentos (
+    id_Depto INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome_Depto VARCHAR(64) NOT NULL,
+    descricao_Depto VARCHAR(64)
+);-- Por setor: Ex. RH; MKT;FACILITADORES; MENTORES; ETC..
 
-create table if not exists Cursos(
-id_Curso INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-nome_Curso VARCHAR(64) NOT NULL,
-descricao_Curso VARCHAR(64)
-); -- Por tipo de Curso: Ex. Analista de Sistema - Renner; Analista de Sistemas; WebDev;
+CREATE TABLE IF NOT EXISTS Cursos (
+    id_Curso INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome_Curso VARCHAR(64) NOT NULL,
+    descricao_Curso VARCHAR(64)
+);-- Por tipo de Curso: Ex. Analista de Sistema - Renner; Analista de Sistemas; WebDev;
 
-create table if not exists Cargos (
-id_Cargo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-nome_Cargo VARCHAR(64) NOT NULL,
-id_Depto int, constraint fk_id_Depto foreign key (id_Depto) references Departamentos (id_Depto) on delete cascade
-); -- Por setor: Ex. RH; MKT;FACILITADORES; MENTORES; ETC..
+CREATE TABLE IF NOT EXISTS Cargos (
+    id_Cargo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome_Cargo VARCHAR(64) NOT NULL,
+    id_Depto INT,
+    CONSTRAINT fk_id_Depto FOREIGN KEY (id_Depto)
+        REFERENCES Departamentos (id_Depto)
+        ON DELETE CASCADE
+);-- Por setor: Ex. RH; MKT;FACILITADORES; MENTORES; ETC..
 
 
-create table if not exists Modulos(
-id_Modulo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-modulo int NOT NULL,
-id_Curso int not null, 
-constraint fk_id_Curso foreign key (id_Curso) references Cursos (id_Curso) on delete cascade
+CREATE TABLE IF NOT EXISTS Modulos (
+    id_Modulo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    modulo INT NOT NULL,
+    id_Curso INT NOT NULL,
+    CONSTRAINT fk_id_Curso FOREIGN KEY (id_Curso)
+        REFERENCES Cursos (id_Curso)
+        ON DELETE CASCADE
 );
 
-create table if not exists Colaboradores(
-id_Colaborador INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-nome_Colaborador VARCHAR(64) NOT NULL,
-cpf_Colaborador VARCHAR(64),
-endereco_Colaborador varchar (150),
-Numero_End_Colaborador varchar(64),
-cep_Colaborador varchar(10),
-cidade_Colaborador varchar(64),
-estado_Colaborador varchar(32),
-data_contratacao date,
-id_Depto int, constraint fk_id_Dpto foreign key (id_Depto) references Departamentos (id_Depto) on delete cascade
-); -- Por Colaborador
+CREATE TABLE IF NOT EXISTS Colaboradores (
+    id_Colaborador INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome_Colaborador VARCHAR(64) NOT NULL,
+    cpf_Colaborador VARCHAR(64),
+    endereco_Colaborador VARCHAR(150),
+    Numero_End_Colaborador VARCHAR(64),
+    cep_Colaborador VARCHAR(10),
+    cidade_Colaborador VARCHAR(64),
+    estado_Colaborador VARCHAR(32),
+    data_contratacao DATE,
+    id_Depto INT,
+    CONSTRAINT fk_id_Dpto FOREIGN KEY (id_Depto)
+        REFERENCES Departamentos (id_Depto)
+        ON DELETE CASCADE
+);-- Por Colaborador
 
-create table if not exists Alunos(
-id_Aluno INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-nome_Aluno VARCHAR(64) NOT NULL,
-cpf_Aluno VARCHAR(64),
-endereco_Aluno varchar (150),
-Numero_End_Aluno char(64),
-cep_Aluno varchar(10),
-cidade_Aluno varchar(64),
-estado_Aluno varchar(32),
-data_Cad_Aluno date
-); -- Por setor: Ex. RH; MKT;FACILITADORES; MENTORES; ETC..
+CREATE TABLE IF NOT EXISTS Alunos (
+    id_Aluno INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome_Aluno VARCHAR(64) NOT NULL,
+    cpf_Aluno VARCHAR(64),
+    endereco_Aluno VARCHAR(150),
+    Numero_End_Aluno CHAR(64),
+    cep_Aluno VARCHAR(10),
+    cidade_Aluno VARCHAR(64),
+    estado_Aluno VARCHAR(32),
+    data_Cad_Aluno DATE
+);-- Por setor: Ex. RH; MKT;FACILITADORES; MENTORES; ETC..
 
-create table if not exists Turmas(
-id_Turma INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-nome_Turma VARCHAR(64) NOT NULL,
-data_inicio date,
-data_fim date,
-id_Colaborador INT, constraint fk_Colaborador foreign key (id_Colaborador) references Colaboradores (id_Colaborador) on delete cascade,
-id_Aluno INT, constraint fk_Aluno foreign key (id_Aluno) references Alunos (id_Aluno) on delete cascade,
-id_Modulo INT, constraint fk_id_Modulo foreign key (id_Modulo) references Modulos (id_Modulo) on delete cascade
-); -- Por tipo de Curso: Ex. Analista de Sistema - Renner; Analista de Sistemas; WebDev;
+CREATE TABLE IF NOT EXISTS Turmas (
+    id_Turma INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome_Turma VARCHAR(64) NOT NULL,
+    data_inicio DATE,
+    data_fim DATE,
+    id_Colaborador INT,
+    CONSTRAINT fk_Colaborador FOREIGN KEY (id_Colaborador)
+        REFERENCES Colaboradores (id_Colaborador)
+        ON DELETE CASCADE,
+    id_Aluno INT,
+    CONSTRAINT fk_Aluno FOREIGN KEY (id_Aluno)
+        REFERENCES Alunos (id_Aluno)
+        ON DELETE CASCADE,
+    id_Modulo INT,
+    CONSTRAINT fk_id_Modulo FOREIGN KEY (id_Modulo)
+        REFERENCES Modulos (id_Modulo)
+        ON DELETE CASCADE
+);-- Por tipo de Curso: Ex. Analista de Sistema - Renner; Analista de Sistemas; WebDev;
 
-create table if not exists Desempenho(
-id_Desempenho INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-classificacao_Desempenho varchar(64),
-id_Aluno INT,constraint fk_id_Alun foreign key (id_Aluno) references Alunos (id_Aluno) on delete cascade,
-id_Turma INT,constraint fk_id_Turma foreign key (id_Turma) references Turmas (id_Turma) on delete cascade
-); -- Por tipo de Curso: Ex. Analista de Sistema - Renner; Analista de Sistemas; WebDev;
+CREATE TABLE IF NOT EXISTS Desempenho (
+    id_Desempenho INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    classificacao_Desempenho VARCHAR(64),
+    id_Aluno INT,
+    CONSTRAINT fk_id_Alun FOREIGN KEY (id_Aluno)
+        REFERENCES Alunos (id_Aluno)
+        ON DELETE CASCADE,
+    id_Turma INT,
+    CONSTRAINT fk_id_Turma FOREIGN KEY (id_Turma)
+        REFERENCES Turmas (id_Turma)
+        ON DELETE CASCADE
+);-- Por tipo de Curso: Ex. Analista de Sistema - Renner; Analista de Sistemas; WebDev;
 
-Create table if not exists Historicos(
-id_Historico int auto_increment not null primary key,
-data_operacao date,
-id_Aluno int, constraint fk_id_Alu foreign key (id_Aluno) references Alunos (id_Aluno) on delete cascade,
-nome_novo varchar(64),
-nome_velho varchar(64),
-comando varchar(64)
+CREATE TABLE IF NOT EXISTS Historicos (
+    id_Historico INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    data_operacao DATE,
+    id_Aluno INT,
+    CONSTRAINT fk_id_Alu FOREIGN KEY (id_Aluno)
+        REFERENCES Alunos (id_Aluno)
+        ON DELETE CASCADE,
+    nome_novo VARCHAR(64),
+    nome_velho VARCHAR(64),
+    comando VARCHAR(64)
 );
 
 -- drop trigger Cadastro;

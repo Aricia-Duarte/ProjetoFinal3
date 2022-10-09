@@ -45,7 +45,12 @@ Insert Into Alunos(nome_Aluno, cpf_Aluno, endereco_Aluno, numero_End_Aluno, cep_
 ('Mateus', '11238612008','Bc.Joao','5, casa', '90100-030','Porto Alegre','RS','2022-03-10'),
 ('Erica', '44843991058','Rua dos Sonhos','13, apto 03, bl C, Torre A', '93020-120','Porto Alegre','RS','2022-03-03'),
 ('Valeria', '21928945031','Trav. Americana','55', '06010-200','Sao Paulo','SP','2020-05-05'),
-('Alana', '78352302086','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20');
+('Alana', '78352302086','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20'),
+('Rogerio', '4859632582','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20'),
+('Sergio', '1598521478','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20'),
+('Tiago', '96587412369','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20'),
+('Pedro', '36985222222','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20'),
+('Jessica', '3698521474','Alameda Passarinho','120, casa 05', '13060-100','Florianopolis','SC','2021-10-20');
 -- Insert Into Cadastro_Alunos(nome_Aluno, cpf_Aluno, id_Curso, id_Grupo) values
 
 Insert Into Turmas (nome_Turma, data_inicio, data_fim, id_Colaborador,id_Aluno,id_Modulo) values

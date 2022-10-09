@@ -15,3 +15,17 @@ from turmas
 inner join colaboradores on colaboradores.id_Colaborador=turmas.id_Colaborador
 group by nome_Turma
 having total >=2;
+
+
+-- Qual foi a ultima atualização na tabela Historico
+select *, MAX(data_operacao) from Historicos;
+
+
+-- Quantas turmas tem atualmente na Resilia
+Select count(id_Turma) as Total_de_Turmas from turmas;
+
+-- Qual foi a ultima turma a iniciar um curso 
+Select nome_Turma as Turma, max(data_inicio) as Data_de_iniciada from turmas;
+
+
+select * from desempenho
